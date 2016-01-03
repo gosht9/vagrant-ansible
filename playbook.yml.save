@@ -1,0 +1,18 @@
+---
+- hosts: all
+
+	vars:
+	  base_packages:
+	  - nodejs
+	  - express
+	  - socket.io
+
+	tasks:
+
+	  - name: añadir URL del repositorio
+	    apt_repository: repo='deb https://deb.nodesource.com/setup_4.x | sudo -E bash -'	
+	  
+ 	  - name: Instalar node.js
+	    apt: name={{ item }} state=latest update_cache=yes cache_valid_item=3600
+	    with_items: base_packages
+		
