@@ -1,16 +1,15 @@
 ---
+
 - hosts: all
   sudo: true
-	tasks:
-	  - name: update apt cache
-
-	    apt:update_cache=yes
-
-	  - name: install nodejs
-	  
-	    apt: name=nodejs state=present	
-	  
-	  - name: install socketio
-	    
-	    npm: name=socket.io
-		
+  tasks:
+   - name: update apt cache
+     apt: update_cache=yes
+   - name: install node
+     apt: name=nodejs state=present
+   - name: install npm
+     apt: name=npm state=present
+   - name: install mongo
+     apt: name=mongodb state=present global=yes
+   - name: install express
+     npm: name=express global=yes
